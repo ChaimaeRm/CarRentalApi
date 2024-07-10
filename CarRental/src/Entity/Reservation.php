@@ -2,10 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
+use App\Controller\BookCarController;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as CustomAssert;
 
+#[ApiResource(
+    operations: [
+        new Post(
+            controller: BookCarController::class,
+            denormalizationContext: ['groups' => ['bookCar']],
+        )
+    ]
+)]
 #[ORM\Entity]
+#[CustomAssert\EndDateConstraint]
 class Reservation
 {
     #[ORM\Id]
@@ -15,20 +29,24 @@ class Reservation
 
     #[ORM\Column(type: 'datetime')]
     #[Assert\NotNull]
+    #[Groups(['bookCar'])]
     private \DateTime $startDate;
 
     #[ORM\Column(type: 'datetime')]
     #[Assert\NotNull]
+    #[Groups(['bookCar'])]
     private \DateTime $endDate;
 
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(name: 'car_id', referencedColumnName: 'id', nullable: false)]
     #[Assert\NotNull]
+    #[Groups(['bookCar'])]
     private Car $car;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     #[Assert\NotNull]
+    #[Groups(['bookCar'])]
     private User $user;
 
     public function getId(): int
