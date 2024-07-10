@@ -2,8 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get(),
+    ]
+)]
 
 #[ORM\Entity]
 #[UniqueEntity('registrationNumer')]
@@ -12,6 +23,7 @@ class Car
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[ApiProperty(identifier: true)]
     private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
