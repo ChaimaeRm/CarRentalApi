@@ -11,7 +11,7 @@ CONSOLE = $(PHP_BIN) bin/console
 .DEFAULT_GOAL := help
 
 ## —— Installation ————————————————————————————————————————————————————————
-init: install  database-create  database-update
+init: install  database-create  database-update database_fixtures
 
 install: ## Install the project dependencies
 	$(COMPOSER_BIN) install
@@ -43,6 +43,8 @@ database-drop: ## Drop the database
 database-update: ## Update the database schema
 	$(CONSOLE) doctrine:schema:update --force
 
+database_fixtures:
+	$(CONSOLE) doctrine:fixtures:load -n
 ## —— Tests ————————————————————————————————————————————————————————————
 test: ## Run the tests
 	$(PHP_BIN) bin/phpunit
