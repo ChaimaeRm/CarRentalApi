@@ -21,8 +21,8 @@ class DeleteReservationController extends AbstractController
             throw new UnauthorizedHttpException('', 'UNAUTHORIZED');
         }
 
-        $bookingService->DeleteMyReservation($data);
+        $bookingService->deleteMyReservation($data);
 
-        return new JsonResponse([],Response::HTTP_NO_CONTENT);
+        return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 }

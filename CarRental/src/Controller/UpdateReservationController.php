@@ -31,8 +31,8 @@ class UpdateReservationController extends AbstractController
             throw new UnauthorizedHttpException('', 'UNAUTHORIZED');
         }
 
-        $this->bookingService->UpdateUserReservation($data, $id);
+        $this->bookingService->updateUserReservation($data, $id);
 
-        return new JsonResponse([],Response::HTTP_NO_CONTENT);
+        return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 }

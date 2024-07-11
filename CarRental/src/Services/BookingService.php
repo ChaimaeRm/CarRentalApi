@@ -27,11 +27,11 @@ class BookingService
     /**
      * @throws \Exception
      */
-    public function UpdateUserReservation(Reservation $reservation, int $currentReservationId): Reservation
+    public function updateUserReservation(Reservation $reservation, int $currentReservationId): Reservation
     {
         $currentReservation = $this->reservationRepository->findOneById($currentReservationId);
 
-        if(!$currentReservation){
+        if (!$currentReservation) {
             throw new NotFoundHttpException('Reservation not found');
         }
 
@@ -55,11 +55,14 @@ class BookingService
         );
 
         if ($existingBookings) {
-            throw  new \Exception('this Car already booked! choose another one or another Date', Response::HTTP_CONFLICT);
+            throw  new \Exception(
+                'this Car already booked! choose another one or another Date',
+                Response::HTTP_CONFLICT
+            );
         }
     }
 
-    public function DeleteMyReservation(Reservation $reservation): void
+    public function deleteMyReservation(Reservation $reservation): void
     {
         $this->reservationRepository->delete($reservation);
     }
