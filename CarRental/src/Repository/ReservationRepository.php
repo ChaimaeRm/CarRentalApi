@@ -24,16 +24,24 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-    public function persist(Reservation $data): void
+    public function save(Reservation $data,bool $persist = true): void
     {
-        $this->getEntityManager()->persist($data);
+        if($persist){
+            $this->getEntityManager()->persist($data);
+        }
+
         $this->getEntityManager()->flush();
     }
 
-    public function checkExistingReservation(Car $car, \DateTime $startDate, \DateTime $endDate)
+    public function checkExistingReservation(Car $car, \DateTime $startDate, \DateTime $endDate, ?int $id = null)
     {
         $qb = $this->createQueryBuilder('r');
-        $query = $qb->where('r.car = :carId')
+        if($id) {
+            $qb->where('r.id <> :id')
+            ->setParameter('id', $id);
+        }
+
+        $query = $qb->andWhere('r.car = :carId')
          ->andWhere($qb->expr()->orX(
              $qb->expr()->between(':startDate', 'r.startDate', 'r.endDate'),
              $qb->expr()->between(':endDate', 'r.startDate', 'r.endDate'),

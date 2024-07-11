@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Controller\BookCarController;
+use App\Controller\UpdateReservationController;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,7 +18,13 @@ use App\Validator\Constraints as CustomAssert;
         new Post(
             controller: BookCarController::class,
             denormalizationContext: ['groups' => ['bookCar']],
-        )
+        ),
+        new Put(
+            controller: UpdateReservationController::class,
+            denormalizationContext: ['groups' => ['bookCar']],
+            read: false
+        ),
+        new Delete()
     ]
 )]
 #[ORM\Entity]
