@@ -1,0 +1,26 @@
+App\Entity\Car:
+  car_1:
+    brand: Toyota
+    model: Corolla
+    year: 2018
+    registrationNumber: ABC-1234
+  car_2:
+    brand: Honda
+    model: Civic
+    year: 2020
+    registrationNumber: XYZ-5678
+  car_3:
+    brand: Ford
+    model: Focus
+    year: 2019
+    registrationNumber: DEF-9012
+  car_4:
+    brand: BMW
+    model: 3 Series
+    year: 2021
+    registrationNumber: GHI-3456
+  car_5:
+    brand: Audi
+    model: A4
+    year: 2017
+    registrationNumber: JKL-7890

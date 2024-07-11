@@ -1,0 +1,6 @@
+App\Entity\Reservation:
+  reservation_1:
+    car:  '@car_1'
+    user: '@user_1'
+    startDate : <date_create()>
+    endDate: <dateTimeBetween($startDate, "+1hour")>
