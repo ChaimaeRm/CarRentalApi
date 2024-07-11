@@ -33,6 +33,6 @@ class UpdateReservationController extends AbstractController
 
         $this->bookingService->UpdateUserReservation($data, $id);
 
-        return new JsonResponse(Response::HTTP_NO_CONTENT);
+        return new JsonResponse([],Response::HTTP_NO_CONTENT);
     }
 }

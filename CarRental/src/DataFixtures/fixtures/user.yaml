@@ -1,0 +1,21 @@
+App\Entity\User:
+  user_1:
+    email:  'Rubye.Ruecker@gmail.com'
+    firstName: 'Rubye'
+    lastName : 'Ruecker'
+    userName: 'RubyeeRu'
+    password: <encodePassword(test)>
+
+  user_2:
+    email: 'alice.Ruecker@gmail.com'
+    firstName: 'alice'
+    lastName: 'Ruecker'
+    userName: 'aliceRu'
+    password: <encodePassword(test)>
+
+  user_3:
+    email: 'jerimie.Ruecker@gmail.com'
+    firstName: 'jerimie'
+    lastName: 'Ruecker'
+    userName: 'jerimieRu'
+    password: <encodePassword(test)>
