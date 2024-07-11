@@ -57,4 +57,11 @@ class ReservationRepository extends ServiceEntityRepository
 
         return (bool) $query->getResult();
     }
+
+    public function delete(Reservation $reservation): void
+    {
+        $this->getEntityManager()->remove($reservation);
+        $this->getEntityManager()->flush();
+
+    }
 }

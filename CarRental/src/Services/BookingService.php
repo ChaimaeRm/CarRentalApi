@@ -58,4 +58,9 @@ class BookingService
             throw  new \Exception('this Car already booked! choose another one or another Date', Response::HTTP_CONFLICT);
         }
     }
+
+    public function DeleteMyReservation(Reservation $reservation): void
+    {
+        $this->reservationRepository->delete($reservation);
+    }
 }

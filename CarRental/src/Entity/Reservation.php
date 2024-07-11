@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Controller\BookCarController;
+use App\Controller\DeleteReservationController;
 use App\Controller\UpdateReservationController;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -24,7 +25,9 @@ use App\Validator\Constraints as CustomAssert;
             denormalizationContext: ['groups' => ['bookCar']],
             read: false
         ),
-        new Delete()
+        new Delete(
+            controller: DeleteReservationController::class,
+        )
     ]
 )]
 #[ORM\Entity]
