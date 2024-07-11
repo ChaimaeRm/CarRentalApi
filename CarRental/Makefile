@@ -46,5 +46,9 @@ database-update: ## Update the database schema
 database_fixtures:
 	$(CONSOLE) doctrine:fixtures:load -n
 ## —— Tests ————————————————————————————————————————————————————————————
+test_prepare_database:
+	$(CONSOLE) doctrine:database:create --env=test
+	$(CONSOLE) doctrine:schema:update --force --env=test
+	$(CONSOLE) doctrine:fixtures:load -n --env=test
 test: ## Run the tests
 	$(PHP_BIN) bin/phpunit
